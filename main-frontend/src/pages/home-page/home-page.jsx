@@ -1,4 +1,9 @@
 import "./home-page.css";
+
+import ClaimsTestTable from "../../components/claims-table-test"
+import React, {useState} from 'react';
+import { Button, Dialog, DialogActions, DialogTitle, DialogContent, DialogContentText } from '@mui/material';
+
 import React, { useState, useEffect } from "react";
 import {
   Button,
@@ -8,6 +13,7 @@ import {
   DialogContent,
   DialogContentText,
 } from "@mui/material";
+
 import InsuranceClaimForm from "../../components/insurance-claim-form";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -30,6 +36,16 @@ const HomePage = () => {
     // console.log(claims);
   });
 
+
+    return <div className="hp-wrapper">
+        <div className="hp-header-section">
+            <h1 className="hp-header">Welcome to DBS</h1>
+        </div>
+        <div className="table">
+            <ClaimsTestTable/>
+        </div>
+        {renderAddNewClaim()}
+
   function renderAddNewClaim() {
     return (
       <div>
@@ -47,6 +63,7 @@ const HomePage = () => {
       </div>
       {renderAddNewClaim()}
       <div></div>
+
     </div>
   );
 };
