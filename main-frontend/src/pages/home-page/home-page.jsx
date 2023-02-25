@@ -1,8 +1,6 @@
 import "./home-page.css";
 
-import ClaimsTestTable from "../../components/claims-table-test"
-import React, {useState} from 'react';
-import { Button, Dialog, DialogActions, DialogTitle, DialogContent, DialogContentText } from '@mui/material';
+import ClaimsTestTable from "../../components/claims-table-test";
 
 import React, { useState, useEffect } from "react";
 import {
@@ -36,16 +34,6 @@ const HomePage = () => {
     // console.log(claims);
   });
 
-
-    return <div className="hp-wrapper">
-        <div className="hp-header-section">
-            <h1 className="hp-header">Welcome to DBS</h1>
-        </div>
-        <div className="table">
-            <ClaimsTestTable/>
-        </div>
-        {renderAddNewClaim()}
-
   function renderAddNewClaim() {
     return (
       <div>
@@ -63,7 +51,6 @@ const HomePage = () => {
       </div>
       {renderAddNewClaim()}
       <div></div>
-
     </div>
   );
 };

@@ -1,63 +1,66 @@
-import { Space, Table, Button } from 'antd';
-import RegisterAPI from '../api/register.api';
-
-
+import { Space, Table, Button } from "antd";
+import RegisterAPI from "../api/register.api";
+import axios from "axios";
 
 const onTrigger = async (values) => {
+  const employeeid = 58001001;
+  axios
+    .get(`http://localhost:4000/api/get-claims/${employeeid}`)
+    .then((response) => {
+      console.log(response.data);
+    });
 
-    const postRequest = {
-        title: values.Email,
-        password: values.password
-    }
-    const data = await RegisterAPI.register(postRequest)
-
+  const postRequest = {
+    title: values.Email,
+    password: values.password,
+  };
+  const data = await RegisterAPI.register(postRequest);
 };
-
-
 
 const columns = [
   {
-    title: 'Claim ID',
-    dataIndex: 'claimid',
-    key: 'claimid',
+    title: "Claim ID",
+    dataIndex: "claimid",
+    key: "claimid",
   },
   {
-    title: 'Insurance ID',
-    dataIndex: 'insuranceid',
-    key: 'insuranceid',
+    title: "Insurance ID",
+    dataIndex: "insuranceid",
+    key: "insuranceid",
   },
   {
-    title: 'Insurance Type',
-    dataIndex: 'insurancetype',
-    key: 'insurancetype',
+    title: "Insurance Type",
+    dataIndex: "insurancetype",
+    key: "insurancetype",
   },
   {
-    title: 'Date',
-    dataIndex: 'date',
-    key: 'date',
+    title: "Date",
+    dataIndex: "date",
+    key: "date",
   },
   {
-    title: 'Amount',
-    key: 'amount',
-    dataIndex: 'amount'
+    title: "Amount",
+    key: "amount",
+    dataIndex: "amount",
   },
   {
-    title: 'Status',
-    key: 'status',
-    dataIndex: 'status'
+    title: "Status",
+    key: "status",
+    dataIndex: "status",
   },
   {
-    title: 'Action',
-    key: 'action',
+    title: "Action",
+    key: "action",
     render: (_, record) => (
       <Space size="middle">
-        <Button onClick={event =>  window.location.href='/extra-page'}>View/Edit</Button>
+        <Button onClick={(event) => (window.location.href = "/extra-page")}>
+          View/Edit
+        </Button>
         <Button>Delete</Button>
       </Space>
     ),
   },
 ];
-
 
 const data = [
   {
@@ -88,7 +91,6 @@ const data = [
     status: "Rejected",
   },
 ];
-
 
 const ClaimsTestTable = () => <Table columns={columns} dataSource={data} />;
 export default ClaimsTestTable;
