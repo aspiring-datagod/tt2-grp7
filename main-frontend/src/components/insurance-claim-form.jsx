@@ -41,14 +41,14 @@ function InsuranceClaimForm({ formOnFinish, onSubmit, initialValues={}, open, on
             // layout="vertical"
             autoComplete="off"
         >
-            {renderTextField('firstName', 'First Name', [{ required: true, message: 'Input your first name!' }])}
-            {renderTextField('lastName', 'Last Name', [{ required: true, message: 'Input your Last Name!' }])}
-            {renderSelectField('insurancePolicy', 'Insurance Policy', [{ required: true, message: 'Select Insurance Policy'}], [{id: 'ID', val: 'VAL'}])}
-            <DatePickerField name="expenseDate" label="Expense Date" rules={[{ required: true, message: 'Select Expense Date'}]} />
-            {renderTextField('purpose', 'Purpose', [{ required: true, message: 'Input claim purpose!' }])}
-            {renderTextField('amount', 'Amount', [{ required: true, message: 'Input claim amount!' }, {type: 'number', message: "Enter a number"}])}
-            <CheckboxField name="followup" label="Followup" />
-            {renderSelectField('previousClaim', 'Previous Claim ID', [{ required: false, message: 'Select previous claim id' }], [{id: 'ID', val: 'VAL'}])}
+            {renderTextField('FirstName', 'First Name', [{ required: true, message: 'Input your first name!' }])}
+            {renderTextField('LastName', 'Last Name', [{ required: true, message: 'Input your Last Name!' }])}
+            {renderSelectField('InsuranceID', 'Insurance Policy', [{ required: true, message: 'Select Insurance Policy'}], [{id: 'ID', val: 'VAL'}])}
+            <DatePickerField name="ExpenseDate" label="Expense Date" rules={[{ required: true, message: 'Select Expense Date'}]} />
+            {renderTextField('Purpose', 'Purpose', [{ required: true, message: 'Input claim purpose!' }])}
+            {renderTextField('Amount', 'Amount', [{ required: true, message: 'Input claim amount!' }, {type: 'number', message: "Enter a number"}])}
+            <CheckboxField name="FollowUp" label="Followup" />
+            {renderSelectField('PreviousClaimID', 'Previous Claim ID', [{ required: false, message: 'Select previous claim id' }], [{id: 'ID', val: 'VAL'}])}
         <Form.Item
             wrapperCol={{
             span: 24,
