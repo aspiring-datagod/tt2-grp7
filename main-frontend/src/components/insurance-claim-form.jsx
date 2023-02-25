@@ -43,7 +43,12 @@ function InsuranceClaimForm({ formOnFinish, onSubmit, initialValues={}, open, on
         >
             {renderTextField('FirstName', 'First Name', [{ required: true, message: 'Input your first name!' }])}
             {renderTextField('LastName', 'Last Name', [{ required: true, message: 'Input your Last Name!' }])}
-            {renderSelectField('InsuranceID', 'Insurance Policy', [{ required: true, message: 'Select Insurance Policy'}], [{id: 'ID', val: 'VAL'}])}
+            {renderSelectField(
+                'InsuranceID', 
+                'Insurance Policy', 
+                [{ required: true, message: 'Select Insurance Policy'}], 
+                [{id: 'ID', val: 'VAL'}]
+            )}
             <DatePickerField name="ExpenseDate" label="Expense Date" rules={[{ required: true, message: 'Select Expense Date'}]} />
             {renderTextField('Purpose', 'Purpose', [{ required: true, message: 'Input claim purpose!' }])}
             {renderTextField('Amount', 'Amount', [{ required: true, message: 'Input claim amount!' }, {type: 'number', message: "Enter a number"}])}

@@ -13,15 +13,23 @@ const InsuranceClaimPage = (props) => {
     const { TextArea } = Input;
     const [initialValues, setInitialValues] = useState({name: "hhhh"});
 
-    // useEffect(() => {
+    useEffect(() => {
+      const claimId = window.location.pathname.substring(8);
+      setInitialValues(initialValues)
 
-    // }
+    }, []);
 
     const formOnFinish = (formValues) => {
+      
         console.log(form.getFieldsValue())
     }
 
-    function submitInsuranceClaim(values) {
+     const submitInsuranceClaim = async (values) => {
+    //   const postRequest = {
+    //     full: values.Email,
+    //     password: values.password
+    // }
+      // const data = await RegisterAPI.register(values)
       console.log('-- submitInsuranceClaim', values);
       navigate("/home");
     }
