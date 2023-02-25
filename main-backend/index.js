@@ -17,7 +17,7 @@ const session = require("express-session");
 // .env
 
 // app.js
-const postgres = require("postgres");
+const postgres = require("pg");
 require("dotenv").config();
 
 const { PGHOST, PGDATABASE, PGUSER, PGPASSWORD, ENDPOINT_ID } = process.env;
