@@ -49,7 +49,7 @@ app.get("/", (req, res) => {
 });
 
 app.use(function (req, res, next) {
-  req.con = con;
+  req.pool = pool;
   next();
 });
 
@@ -58,5 +58,5 @@ app.use(function (req, res, next) {
 // app.use("/", transaction);
 
 app.listen(port, () => {
-  console.log(`Express Bank app listening on port ${port}`);
+  console.log(`Express Insurance Claim app listening on port ${port}`);
 });
