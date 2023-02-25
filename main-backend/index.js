@@ -5,11 +5,12 @@ const mysql = require("mysql");
 const session = require("express-session");
 
 // Controller Modules
-// const authentication = require("./controllers/authentication");
+const authentication = require("./controllers/authentication");
 // const account = require("./controllers/account");
 // const transaction = require("./controllers/transaction");
 
-const claim = require("./contollers/claim");
+const claim = require("./controllers/claim");
+const policies = require("./controllers/policies");
 
 var con = mysql.createConnection({
   host: "localhost",
@@ -47,10 +48,11 @@ app.use(function (req, res, next) {
   next();
 });
 
-// app.use("/", authentication);
+app.use("/", authentication);
 // app.use("/", account);
 // app.use("/", transaction);
 app.use("/", claim);
+app.use("/", policies);
 
 app.listen(port, () => {
   console.log(`Express Bank app listening on port ${port}`);
