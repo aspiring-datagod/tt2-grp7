@@ -53,6 +53,33 @@ app.use(function (req, res, next) {
   next();
 });
 
+// Define a route for handling GET requests
+app.get("/users", async (req, res) => {
+  try {
+    // Retrieve all users from the "User" table
+    const users = await db`SELECT * FROM "User"`;
+
+    // Send the list of users as a JSON response
+    res.json(users);
+  } catch (err) {
+    // Send an error message as a JSON response
+    res.status(500).json({ error: err.message });
+  }
+});
+
+async function getPgVersion() {
+  const result = await sql`select version()`;
+  console.log(result);
+}
+
+async function testQuery() {
+  const result = await sql`SELECT * FROM public."User"; `;
+  console.log(result);
+}
+
+getPgVersion();
+testQuery();
+
 // app.use("/", authentication);
 // app.use("/", account);
 // app.use("/", transaction);
