@@ -31,52 +31,28 @@ WHERE e.EmployeeID = ?;
   });
 });
 
-router.post("/api/post-account-transaction", (req, res) => {
-  const { debit, credit, amount } = req.body;
-  const sql = `INSERT INTO transactions (debit, credit, amount, time_stamp)
-               VALUES (?, ?, ?, DATE_FORMAT(NOW(), '%Y-%m-%d %H:%i:%s'))`;
-  const values = [debit, credit, amount];
+router.post("/api/post-claim", (req, res) => {
+  const { insuranceid, firstname, lastname, expensedate, amount, purpose } =
+    req.body;
+  const sql = `INSERT INTO public."InsuranceClaims(insuranceid, firstname, lastname, expensedate, amount, purpose) VALUES(?, ?, ?, ?, ?, ?)`;
+  const values = [
+    insuranceid,
+    firstname,
+    lastname,
+    expensedate,
+    amount,
+    purpose,
+  ];
   req.con.query(sql, values, function (err, result) {
     if (err) {
       console.error(err);
-      res.status(500).send({ message: "Failed to create account transaction" });
+      res.status(500).send({ message: "Failed to create Claim " });
       return;
     }
-    console.log("Transaction has been successfully posted to the database");
+    console.log("Claim has been successfully posted to the database");
     res.send({
-      message: `Transaction has been successfully posted to the database with Debit = ${debit}, Credit = ${credit}, Amount = ${amount}`,
+      message: `Claim has been successfully posted to the database`,
     });
-  });
-});
-
-router.get("/api/monthly-transaction-summary/:accountID", (req, res) => {
-  const accountID = req.params.accountID;
-  const sql = `
-    SELECT
-    DATE_FORMAT(time_stamp, '%Y-%m') AS month,
-    SUM(amount) AS total_amount
-    FROM transactions
-    WHERE debit = ?
-    GROUP BY DATE_FORMAT(time_stamp, '%Y-%m')
-    ORDER BY month;
-    `;
-
-  const values = [accountID];
-  req.con.query(sql, values, function (err, result) {
-    if (err) {
-      console.error(err);
-      res.status(500).send({
-        message: "Failed to retrieve account monthly transaction information",
-      });
-    }
-
-    if (result.length > 0) {
-      res.send(result);
-    } else {
-      res
-        .status(404)
-        .send({ message: "No account transactions found for the given user." });
-    }
   });
 });
 
