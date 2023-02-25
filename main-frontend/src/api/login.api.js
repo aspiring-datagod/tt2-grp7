@@ -11,8 +11,15 @@ class LoginApi {
      * @param {username : string, password : string} request 
      */
     static async login(request) {
-        const response = await axios.post(ENDPOINT.LOGIN, request);
-        return response.data
+        try {
+
+            const response = await axios.post(ENDPOINT.LOGIN, request);
+            return response.data
+            
+        } catch (error) {
+            console.log("login in failed")          
+        }
+        
     }
 }
 
