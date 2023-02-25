@@ -25,9 +25,11 @@ const InsuranceClaimPage = (props) => {
     // console.log(policies);
   });
 
-  const formOnFinish = (formValues) => {
-    console.log(form.getFieldsValue());
-  };
+    useEffect(() => {
+      const claimId = window.location.pathname.substring(8);
+      setInitialValues(initialValues)
+
+    }, []);
 
   function submitInsuranceClaim(values) {
     console.log("-- submitInsuranceClaim", values);
@@ -64,6 +66,7 @@ const InsuranceClaimPage = (props) => {
         <InsuranceClaimForm
           onSubmit={submitInsuranceClaim}
           initialValues={policies}
+          policies={policies}
         />
       </div>
     </div>
