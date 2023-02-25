@@ -1,12 +1,19 @@
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 const express = require("express");
-const pool = require("../database/psqlDb");
+const pool = require("../db");
 
 const router = express.Router();
 
 // get config vars
 dotenv.config();
+
+// access config var
+function generateAccessToken(email) {
+	return jwt.sign({ email: email }, process.env.TOKEN_SECRET, {
+		expiresIn: 60 * 60,
+	});
+}
 
 function userLogin(req, res) {
 	// Verify that such a user exist
@@ -17,7 +24,7 @@ function userLogin(req, res) {
 		return;
 	}
 	pool.query(
-		"SELECT * FROM users WHERE email = $1",
+		"SELECT * FROM users where email = $1",
 		[email],
 		(error, result) => {
 			if (error) console.log(error);
@@ -25,7 +32,7 @@ function userLogin(req, res) {
 				const retrievedPassword = result.rows[0].password;
 
 				if (retrievedPassword === password) {
-					// Success
+					res.json(generateAccessToken(email));
 				} else {
 					res.status(403).send("Password incorrect");
 				}
@@ -36,6 +43,22 @@ function userLogin(req, res) {
 	);
 }
 
+function verifyUser(req, res) {
+	const { token, secret } = req.body;
+	if (!token || !secret) {
+		res.status(400).send("Missing token or secret field");
+		return;
+	}
+	try {
+		console.log("valid token");
+		res.status(200).send("Valid token");
+	} catch {
+		console.log("invalid token");
+		res.status(403).send("Invalid token");
+	}
+}
+
 module.exports = {
 	userLogin,
+	verifyUser,
 };
