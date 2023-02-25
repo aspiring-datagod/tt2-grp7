@@ -53,12 +53,11 @@ app.use(function (req, res, next) {
   next();
 });
 
-<<<<<<< Updated upstream
-=======
 // Define a route for handling GET requests
 app.get("/users", async (req, res) => {
   try {
     // Retrieve all users from the "User" table
+
     const users = await sql`SELECT * FROM public."User"`;
 
     // Send the list of users as a JSON response
@@ -81,8 +80,6 @@ async function testQuery() {
 
 getPgVersion();
 testQuery();
-
->>>>>>> Stashed changes
 // app.use("/", authentication);
 // app.use("/", account);
 // app.use("/", transaction);
