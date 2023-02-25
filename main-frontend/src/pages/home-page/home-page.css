@@ -1,0 +1,16 @@
+.hp-wrapper {
+    padding: 0 40px;
+    overflow-y: auto;
+}
+
+
+.hp-header-section {
+    border-bottom: #eeeeee 1px solid;
+    padding: 20px 0;
+}
+
+.hp-header {
+    font-size: 1.8em;
+    margin: 0;
+    font-weight: 600;
+}
