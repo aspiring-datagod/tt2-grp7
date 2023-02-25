@@ -16,12 +16,12 @@ const sql = postgres(URL, { ssl: "require" });
 
 async function userLogin(req, res) {
 	// Verify that such a user exist
-	const { email, password } = req.body;
+	// const { email, password } = req.body;
 
-	// const { email, password } = {
-	// 	email: "irene-lim@gmail.com",
-	// 	password: "iLoveTT!23",
-	// };
+	const { email, password } = {
+		email: "irene-lim@gmail.com",
+		password: "iLoveTT!23",
+	};
 	console.log(email, password);
 	if (!email || !password) {
 		res.status(400).send("email or password field is missing");
@@ -60,8 +60,6 @@ async function userLogin(req, res) {
 	// );
 	return;
 }
-
-userLogin();
 
 module.exports = {
 	userLogin,

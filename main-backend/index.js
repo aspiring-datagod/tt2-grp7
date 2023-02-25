@@ -3,6 +3,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const mysql = require("mysql");
 const session = require("express-session");
+const authRouter = require("./router/authentication");
 
 // Controller Modules
 
@@ -48,10 +49,12 @@ app.get("/", (req, res) => {
 	res.send("Hello World!");
 });
 
-app.use(function (req, res, next) {
-	req.pool = pool;
-	next();
-});
+// app.use(function (req, res, next) {
+// 	req.pool = pool;
+// 	next();
+// });
+
+app.use(authRouter);
 
 // Define a route for handling GET requests
 app.get("/users", async (req, res) => {
