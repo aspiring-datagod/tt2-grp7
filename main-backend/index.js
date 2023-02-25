@@ -6,6 +6,7 @@ const session = require("express-session");
 
 //Routers
 const authRouter = require("./router/authentication");
+const insuranceRouter = require("./router/insurance");
 
 require("dotenv").config();
 
@@ -58,6 +59,7 @@ app.get("/users", async (req, res) => {
 
 // Use the router for authentication routes
 app.use("/auth", authRouter);
+app.use("/insurance", insuranceRouter);
 
 app.listen(port, () => {
   console.log(`Express Insurance Claim app listening on port ${port}`);
