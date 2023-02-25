@@ -10,12 +10,27 @@ const session = require("express-session");
 // const account = require("./controllers/account");
 // const transaction = require("./controllers/transaction");
 
-// var con = mysql.createConnection({
-//   host: "localhost",
-//   user: "",
-//   password: "",
-//   database: "",
-// });
+// Do not expose your Neon credentials to the browser
+// .env
+// app.js
+// Do not expose your Neon credentials to the browser
+// .env
+
+// app.js
+const postgres = require("postgres");
+require("dotenv").config();
+
+const { PGHOST, PGDATABASE, PGUSER, PGPASSWORD, ENDPOINT_ID } = process.env;
+const URL = `postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}/${PGDATABASE}?options=project%3D${ENDPOINT_ID}`;
+
+const sql = postgres(URL, { ssl: "require" });
+
+async function getPgVersion() {
+  const result = await sql`select version()`;
+  console.log(result);
+}
+
+getPgVersion();
 
 // con.connect(function (err) {
 //   if (err) throw err;
@@ -23,14 +38,14 @@ const session = require("express-session");
 // });
 
 const app = express();
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 5432;
 
 app.use(
-	session({
-		secret: "secret-key",
-		resave: false,
-		saveUninitialized: false,
-	})
+  session({
+    secret: "secret-key",
+    resave: false,
+    saveUninitialized: false,
+  })
 );
 
 app.use(cors());
