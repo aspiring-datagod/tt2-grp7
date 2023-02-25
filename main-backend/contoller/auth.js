@@ -16,24 +16,30 @@ const sql = postgres(URL, { ssl: "require" });
 
 async function userLogin(req, res) {
 	// Verify that such a user exist
-	// const { email, password } = req.body;
+	const { email, password } = req.body;
 
-	const { email, password } = {
-		email: "irene-lim@gmail.com",
-		password: "iLoveTT!23",
-	};
+	// const { email, password } = {
+	// 	email: "irene-lim@gmail.com",
+	// 	password: "iLoveTT!23",
+	// };
 	console.log(email, password);
 	if (!email || !password) {
 		res.status(400).send("email or password field is missing");
 		return;
 	}
 	try {
-		// const users = await sql`SELECT * FROM public."User" WHERE Email = ${email}`;
-		// if (users.length === 1) {
-		// 	console.log(users[1]);
-		// }
-		const result = await sql`SELECT * FROM public."User"; `;
-		console.log(result);
+		const users =
+			await sql`SELECT * FROM public."User" WHERE email = ${email} `;
+		if (users.length === 1) {
+			const userData = users[0];
+			res.status(200).json({
+				EmployeeID: userData["employeeid"],
+				FirstName: userData["firstname"],
+				LastName: userData["lastname"],
+			});
+		} else {
+			console.log(users);
+		}
 	} catch (error) {
 		console.log(error);
 	}
