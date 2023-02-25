@@ -26,8 +26,8 @@ const URL = `postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}/${PGDATABASE}?options=
 const sql = postgres(URL, { ssl: "require" });
 
 async function getPgVersion() {
-  const result = await sql`select version()`;
-  console.log(result);
+	const result = await sql`select version()`;
+	console.log(result);
 }
 
 getPgVersion();
@@ -38,44 +38,44 @@ getPgVersion();
 // });
 
 const app = express();
-const port = process.env.PORT || 5432;
+const port = process.env.PORT || 3002;
 
 app.use(cors());
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+	res.send("Hello World!");
 });
 
 app.use(function (req, res, next) {
-  req.pool = pool;
-  next();
+	req.pool = pool;
+	next();
 });
 
 // Define a route for handling GET requests
 app.get("/users", async (req, res) => {
-  try {
-    // Retrieve all users from the "User" table
+	try {
+		// Retrieve all users from the "User" table
 
-    const users = await sql`SELECT * FROM public."User"`;
+		const users = await sql`SELECT * FROM public."User"`;
 
-    // Send the list of users as a JSON response
-    res.json(users);
-  } catch (err) {
-    // Send an error message as a JSON response
-    res.status(500).json({ error: err.message });
-  }
+		// Send the list of users as a JSON response
+		res.json(users);
+	} catch (err) {
+		// Send an error message as a JSON response
+		res.status(500).json({ error: err.message });
+	}
 });
 
 async function getPgVersion() {
-  const result = await sql`select version()`;
-  console.log(result);
+	const result = await sql`select version()`;
+	console.log(result);
 }
 
 async function testQuery() {
-  const result = await sql`SELECT * FROM public."User"; `;
-  console.log(result);
+	const result = await sql`SELECT * FROM public."User"; `;
+	console.log(result);
 }
 
 getPgVersion();
@@ -85,5 +85,5 @@ testQuery();
 // app.use("/", transaction);
 
 app.listen(port, () => {
-  console.log(`Express Insurance Claim app listening on port ${port}`);
+	console.log(`Express Insurance Claim app listening on port ${port}`);
 });
