@@ -1,0 +1,92 @@
+.ap-page-wrapper {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    overflow: hidden;
+}
+
+
+.ap-form-section {
+    min-width: 500px;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.ap-form-wrapper {
+    width: 100%;
+    max-width: 360px;
+}
+
+.ap-form-toggler {
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 10px;
+    height: 42px;
+    display: flex;
+    padding: 5px;
+    background: #eeeeee;
+}
+
+.ap-header {
+    font-size: 1.4em;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.75)
+}
+
+.ap-para {
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+}
+
+.ap-form-option {
+    flex: 1;
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.75)
+}
+
+.ap-form-option.active {
+    background-color: white;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+
+.ap-advertisement-section {
+    flex: 1;
+    overflow: hidden;
+    padding-top: 10px;
+    background-color: white;
+}
+
+
+.ap-img {
+    object-fit: contain;
+    height: 100%;
+    width: auto;
+    border-top-left-radius: 50px;
+
+}
+
+
+@media only screen and (max-width: 600px) {
+    .ap-advertisement-section {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .ap-form-section {
+        min-width: 0;
+        width: 100%;
+    }
+}
