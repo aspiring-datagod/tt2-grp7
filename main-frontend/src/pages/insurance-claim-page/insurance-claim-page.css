@@ -1,0 +1,29 @@
+.background {
+  background-color: #FFFFFF;
+  height: 100vh;
+  max-height: 100vh;
+  overflow-y: auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-card {
+  padding: 30px;
+  border-radius: 10px;
+  background-color: #FAFAFA;
+  color: #212121;
+  width: 400px;
+}
+
+.form-card-header-section {
+  width: 100%;
+  font-size: 1em;
+  display: flex;
+  justify-content: center;
+}
+
+.form-row {
+  display: flex;
+}
