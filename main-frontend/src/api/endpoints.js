@@ -8,6 +8,6 @@ export const ENDPOINT = {
     UPDATE: `${BASE_URL}/users/2`,
     REGISTER: `${BASE_URL}/register`,
     LOGIN: `${BASE_URL}/login`,
-}
+}   
 
 

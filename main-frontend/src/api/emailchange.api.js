@@ -11,8 +11,14 @@ class EmailAPI {
      * @param {username : string, email : string, password : whatever} request 
      */
     static async emailchange(request) {
-        const response = await axios.patch(ENDPOINT.UPDATE, request);
-        return response.data
+
+        try {
+            const response = await axios.patch(ENDPOINT.UPDATE, request);
+            return response.data
+        } catch (error) {
+            console.log("email change failed")
+        }
+        
     }
 }
 

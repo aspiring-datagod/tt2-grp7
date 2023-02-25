@@ -11,8 +11,13 @@ class PasswordAPI {
      * @param {oldpassword : string, newpassword : string} request 
      */
     static async passwordchange(request) {
-        const response = await axios.patch(ENDPOINT.UPDATE, request);
+        try {
+            const response = await axios.patch(ENDPOINT.UPDATE, request);
         return response.data
+        } catch (error) {
+            console.log("password change failed")
+        }
+        
     }
 }
 
