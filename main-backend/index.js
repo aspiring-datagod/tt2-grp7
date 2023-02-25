@@ -17,7 +17,7 @@ const session = require("express-session");
 // .env
 
 // app.js
-const postgres = require("postgres");
+const postgres = require("pg");
 require("dotenv").config();
 
 const { PGHOST, PGDATABASE, PGUSER, PGPASSWORD, ENDPOINT_ID } = process.env;
@@ -26,8 +26,8 @@ const URL = `postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}/${PGDATABASE}?options=
 const sql = postgres(URL, { ssl: "require" });
 
 async function getPgVersion() {
-  const result = await sql`select version()`;
-  console.log(result);
+	const result = await sql`select version()`;
+	console.log(result);
 }
 
 getPgVersion();
@@ -41,11 +41,11 @@ const app = express();
 const port = process.env.PORT || 5432;
 
 app.use(
-  session({
-    secret: "secret-key",
-    resave: false,
-    saveUninitialized: false,
-  })
+	session({
+		secret: "secret-key",
+		resave: false,
+		saveUninitialized: false,
+	})
 );
 
 app.use(cors());
@@ -57,7 +57,7 @@ app.get("/", (req, res) => {
 });
 
 app.use(function (req, res, next) {
-	req.con = con;
+	req.pool = pool;
 	next();
 });
 
@@ -66,5 +66,5 @@ app.use(function (req, res, next) {
 // app.use("/", transaction);
 
 app.listen(port, () => {
-	console.log(`Express Bank app listening on port ${port}`);
+	console.log(`Express Insurance Claim app listening on port ${port}`);
 });
