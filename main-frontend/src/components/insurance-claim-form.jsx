@@ -5,7 +5,7 @@ import Selectbutton from './selectfield';
 import CheckboxField from './checkbox-field.jsx';
 import DatePickerField from './date-picker-field.jsx';
 
-function InsuranceClaimForm({ formOnFinish, onSubmit, initialValues={}, open, onClose, isEdit=false }) {
+function InsuranceClaimForm({ policies, formOnFinish, onSubmit, initialValues={}, open, onClose, isEdit=false }) {
     const { TextArea } = Input;
     const [form] = Form.useForm();
 
@@ -28,6 +28,13 @@ function InsuranceClaimForm({ formOnFinish, onSubmit, initialValues={}, open, on
         );
     }
 
+    // console.log('policies', policies);
+    const policyOptions = [];
+    for (let i = 0; i < policies.length; i++) {
+        policyOptions.push({value: policies[i]['InsuranceID'], label: policies[i]['Insurance_Type']})
+    }
+    // console.log(policyOptions);
+
     return (
         <Form
             name="insurance-claim-form"
@@ -43,12 +50,17 @@ function InsuranceClaimForm({ formOnFinish, onSubmit, initialValues={}, open, on
         >
             {renderTextField('FirstName', 'First Name', [{ required: true, message: 'Input your first name!' }])}
             {renderTextField('LastName', 'Last Name', [{ required: true, message: 'Input your Last Name!' }])}
-            {renderSelectField('InsuranceID', 'Insurance Policy', [{ required: true, message: 'Select Insurance Policy'}], [{id: 'ID', val: 'VAL'}])}
+            {renderSelectField(
+                'InsuranceID', 
+                'Insurance Policy', 
+                [{ required: true, message: 'Select Insurance Policy'}], 
+                policyOptions
+            )}
             <DatePickerField name="ExpenseDate" label="Expense Date" rules={[{ required: true, message: 'Select Expense Date'}]} />
             {renderTextField('Purpose', 'Purpose', [{ required: true, message: 'Input claim purpose!' }])}
             {renderTextField('Amount', 'Amount', [{ required: true, message: 'Input claim amount!' }, {type: 'number', message: "Enter a number"}])}
             <CheckboxField name="FollowUp" label="Followup" />
-            {renderSelectField('PreviousClaimID', 'Previous Claim ID', [{ required: false, message: 'Select previous claim id' }], [{id: 'ID', val: 'VAL'}])}
+            {renderSelectField('PreviousClaimID', 'Previous Claim ID', [{ required: false, message: 'Select previous claim id' }], [{value: 1001, label: 1001}])}
         <Form.Item
             wrapperCol={{
             span: 24,
