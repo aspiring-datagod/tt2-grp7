@@ -1,7 +1,25 @@
 import "./home-page.css";
 import ClaimsTestTable from "../../components/claims-table-test"
+import React, {useState} from 'react';
+import { Button, Dialog, DialogActions, DialogTitle, DialogContent, DialogContentText } from '@mui/material';
+import InsuranceClaimForm from "../../components/insurance-claim-form";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
+    const navigate = useNavigate();
+
+    function navigateToNew() {
+        navigate("/new");
+    }
+
+    function renderAddNewClaim() {
+        return (
+            <div>
+                <Button variant="contained" onClick={navigateToNew}>Add New Claim</Button>
+            </div>
+        );
+    }
+
     return <div className="hp-wrapper">
         <div className="hp-header-section">
             <h1 className="hp-header">Welcome to DBS</h1>
@@ -9,9 +27,7 @@ const HomePage = () => {
         <div className="table">
             <ClaimsTestTable/>
         </div>
-
-
-
+        {renderAddNewClaim()}
     </div>
 }
 
