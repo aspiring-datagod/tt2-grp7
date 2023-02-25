@@ -1,5 +1,3 @@
-const InsuranceClaims = require("../database/InsuranceClaims.js");
-
 const dotenv = require("dotenv");
 const express = require("express");
 // const pool = require("../database/psqlDb");
@@ -12,7 +10,6 @@ dotenv.config();
 function getPolicies(req, res) {
   // Verify that such a user exist
   const { employeeid } = req.body;
-  console.log(email, password);
 
   req.pool.query(
     `SELECT * FROM public."insurancepolicies" WHERE employeeid = $1`,
