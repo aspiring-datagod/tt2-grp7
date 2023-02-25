@@ -1,6 +1,6 @@
 import { Button, Checkbox, Form, Input } from "antd";
 import { useNavigate } from "react-router-dom";
-import LoginApi from "../api/login.api";
+
 import axios from "axios";
 
 const SignInForm = (props) => {
@@ -30,20 +30,6 @@ const SignInForm = (props) => {
           error
         );
       });
-
-    // const postRequest = {
-    //   email: "eve.holt@reqres.in",
-    //   password: "cityslicka",
-    // };
-
-    // console.log(postRequest);
-
-    // const response = await LoginApi.login(postRequest);
-    // const token = response.token;
-    // localStorage.setItem("accessToken", token);
-    // if (token) {
-    //   navigate("home");
-    // }
   };
 
   return (
