@@ -1,10 +1,25 @@
-import { Space, Table, Tag } from 'antd';
+import { Space, Table, Button } from 'antd';
+import RegisterAPI from '../api/register.api';
+
+
+
+const onTrigger = async (values) => {
+
+    const postRequest = {
+        title: values.Email,
+        password: values.password
+    }
+    const data = await RegisterAPI.register(postRequest)
+
+};
+
+
+
 const columns = [
   {
     title: 'Claim ID',
     dataIndex: 'claimid',
     key: 'claimid',
-    render: (text) => <a>{text}</a>,
   },
   {
     title: 'Insurance ID',
@@ -36,12 +51,14 @@ const columns = [
     key: 'action',
     render: (_, record) => (
       <Space size="middle">
-        <a>Edit</a>
-        <a>Delete</a>
+        <Button onClick={event =>  window.location.href='/extra-page'}>View/Edit</Button>
+        <Button>Delete</Button>
       </Space>
     ),
   },
 ];
+
+
 const data = [
   {
     key: 2010,
@@ -71,5 +88,7 @@ const data = [
     status: "Rejected",
   },
 ];
+
+
 const ClaimsTestTable = () => <Table columns={columns} dataSource={data} />;
 export default ClaimsTestTable;
