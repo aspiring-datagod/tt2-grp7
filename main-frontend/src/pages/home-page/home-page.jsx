@@ -1,7 +1,5 @@
 import "./home-page.css";
-import ClaimsTable from "../../components/claims-table"
 import ClaimsTestTable from "../../components/claims-table-test"
-import EditViewDialog from "../../components/edit-popup";
 
 const HomePage = () => {
     return <div className="hp-wrapper">
@@ -10,7 +8,6 @@ const HomePage = () => {
         </div>
         <div className="table">
             <ClaimsTestTable/>
-            <EditViewDialog />
         </div>
 
 
