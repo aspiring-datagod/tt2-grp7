@@ -26,11 +26,11 @@ const app = express();
 const port = process.env.PORT || 4000;
 
 app.use(
-  session({
-    secret: "secret-key",
-    resave: false,
-    saveUninitialized: false,
-  })
+	session({
+		secret: "secret-key",
+		resave: false,
+		saveUninitialized: false,
+	})
 );
 
 app.use(cors());
@@ -38,12 +38,12 @@ app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+	res.send("Hello World!");
 });
 
 app.use(function (req, res, next) {
-  req.con = con;
-  next();
+	req.con = con;
+	next();
 });
 
 // app.use("/", authentication);
@@ -51,5 +51,5 @@ app.use(function (req, res, next) {
 // app.use("/", transaction);
 
 app.listen(port, () => {
-  console.log(`Express Bank app listening on port ${port}`);
+	console.log(`Express Bank app listening on port ${port}`);
 });
